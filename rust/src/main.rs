@@ -1,5 +1,6 @@
 use std::env;
 mod day1;
+mod day2;
 mod utils;
 
 fn main() {
@@ -12,6 +13,12 @@ fn run_days() {
     let utils::PartResult(res_2, time_2) = part_2;
     println!("1-1: {} | {}", res_1, time_1);
     println!("1-2: {} | {}", res_2, time_2);
+    let utils::DayResult(part_1, part_2) = day2::run(get_input_path(2));
+    let utils::PartResult(res_1, time_1) = part_1;
+    let utils::PartResult(res_2, time_2) = part_2;
+    println!("2-1: {} | {}", res_1, time_1);
+    println!("2-2: {} | {}", res_2, time_2);
+}
 
 fn get_input_path(day: u32) -> String {
     let args: Vec<String> = env::args().collect();
