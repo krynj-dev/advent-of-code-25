@@ -1,5 +1,6 @@
 use std::{
     cmp::{max, min},
+    collections::HashSet,
     fs::File,
     io::{BufRead, BufReader},
 };
@@ -42,11 +43,11 @@ fn count_accessible(
     map: &Vec<String>,
     range: i32,
     limit: i32,
-    mut seen: Vec<(usize, usize)>,
-) -> Vec<(usize, usize)> {
+    mut seen: HashSet<(usize, usize)>,
+) -> HashSet<(usize, usize)> {
     let width = map[0].len() as i32;
     let height = map.len() as i32;
-    let mut accessible: Vec<(usize, usize)> = Vec::new();
+    let mut accessible: HashSet<(usize, usize)> = HashSet::new();
     for y in 0..height {
         for x in 0..width {
             if map[y as usize].chars().nth(x as usize).unwrap() == '@'
@@ -65,26 +66,25 @@ fn count_accessible(
                     }
                 }
                 if adj < limit {
-                    accessible.push((y as usize, x as usize));
+                    accessible.insert((y as usize, x as usize));
                 }
             }
         }
     }
     for p in accessible {
-        seen.push(p);
+        seen.insert(p);
     }
     return seen;
 }
 
 fn part_one(parsed: &Vec<String>) -> u128 {
-    return count_accessible(parsed, 1i32, 4i32, Vec::new()).len() as u128;
+    return count_accessible(parsed, 1i32, 4i32, HashSet::new()).len() as u128;
 }
 
-// This is a really bad solution. It takes so damn long haha
-// Maybe I should have used a map instead of a vector to track
-// what's been removed. It took 109491323 (with printing)
+// Good news! Changing to a HashSet took the running time down to 4931580 from 109491323. That's a
+// two orders of magnitude reduction!
 fn part_two(parsed: &Vec<String>) -> u128 {
-    let mut removed: Vec<(usize, usize)> = Vec::new();
+    let mut removed: HashSet<(usize, usize)> = HashSet::new();
     let mut prev_rem = -1isize;
     while prev_rem != removed.len() as isize {
         prev_rem = removed.len() as isize;
