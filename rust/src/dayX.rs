@@ -31,7 +31,7 @@ fn parse_input(input: String) -> Vec<String> {
     let mut line = String::new();
 
     while reader.read_line(&mut line).expect("reading line") != 0 {
-        parsed.push(line.trim_end());
+        parsed.push(line.trim_end().to_owned());
         line.clear();
     }
     return parsed;

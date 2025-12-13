@@ -2,6 +2,7 @@ use std::env;
 mod day1;
 mod day2;
 mod day3;
+mod day4;
 mod utils;
 
 fn main() {
@@ -24,6 +25,11 @@ fn run_days() {
     let utils::PartResult(res_2, time_2) = part_2;
     println!("3-1: {} | {}", res_1, time_1);
     println!("3-2: {} | {}", res_2, time_2);
+    let utils::DayResult(part_1, part_2) = day4::run(get_input_path(4));
+    let utils::PartResult(res_1, time_1) = part_1;
+    let utils::PartResult(res_2, time_2) = part_2;
+    println!("4-1: {} | {}", res_1, time_1);
+    println!("4-2: {} | {}", res_2, time_2);
 }
 
 fn get_input_path(day: u32) -> String {
