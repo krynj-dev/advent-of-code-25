@@ -170,7 +170,6 @@ fn part_two(parsed: &Vec<(u128, u128, u128)>) -> u128 {
             }
         }
         if largest_count == parsed.len() as u128 {
-            println!("{:?} {:?}", it.0.1, it.0.2);
             count = it.0.1.0 * it.0.2.0;
             break;
         }

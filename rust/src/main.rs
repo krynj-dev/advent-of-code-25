@@ -7,6 +7,7 @@ mod day5;
 mod day6;
 mod day7;
 mod day8;
+mod day9;
 mod utils;
 
 fn main() {
@@ -14,6 +15,11 @@ fn main() {
 }
 
 fn run_days() {
+    let utils::DayResult(part_1, part_2) = day9::run(get_input_path(9));
+    let utils::PartResult(res_1, time_1) = part_1;
+    let utils::PartResult(res_2, time_2) = part_2;
+    println!("9-1: {} | {}", res_1, time_1);
+    println!("9-2: {} | {}", res_2, time_2);
     let utils::DayResult(part_1, part_2) = day8::run(get_input_path(8));
     let utils::PartResult(res_1, time_1) = part_1;
     let utils::PartResult(res_2, time_2) = part_2;
